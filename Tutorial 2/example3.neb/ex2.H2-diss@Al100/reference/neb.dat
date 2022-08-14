@@ -1,0 +1,13 @@
+ &PATH
+ CI_scheme       =  'auto',
+ k_max           =  0.3,
+ k_min           =  0.2,
+ nstep_path      =  100,
+ num_of_images   =  8,
+ opt_scheme      =  'quick-min',
+ path_thr        =  0.2,
+ restart_mode    =  'restart',
+ string_method   =  'neb',
+ use_freezing    =  .true.,
+ /
+ 

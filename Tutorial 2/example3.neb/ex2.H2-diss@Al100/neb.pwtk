@@ -1,0 +1,25 @@
+# load the neb.x input file
+load_fromNEBI neb.H2-diss.Al100-2x1-2L.in
+
+
+# first perform a few steps of plain NEB (CI_scheme = 'no-CI') as to
+# stabilize a bit the reaction path; notice that path_thr = 0.8
+
+PATH {
+    CI_scheme = 'no-CI',
+    path_thr  = 0.8,
+}
+
+runNEB neb.noCI.in
+
+
+# now perform a climbing-image CI-NEB (CI_scheme = 'auto')
+# (a lousy convergence is requested to speed-up)
+
+PATH {
+    restart_mode = 'restart'
+    CI_scheme = 'auto',    
+    path_thr  = 0.2,
+}
+
+runNEB neb.auto.in

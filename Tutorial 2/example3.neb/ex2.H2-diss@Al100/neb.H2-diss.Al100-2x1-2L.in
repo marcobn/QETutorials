@@ -1,0 +1,79 @@
+BEGIN
+
+BEGIN_PATH_INPUT
+&PATH
+   string_method  = 'neb',
+   nstep_path     = 100,
+   opt_scheme     = 'quick-min',
+   num_of_images  = 8,
+   k_max          = 0.3,
+   k_min          = 0.2,
+   CI_scheme      = 'auto',
+   path_thr       = 0.2,
+
+   use_freezing = .true.
+/
+END_PATH_INPUT
+
+BEGIN_ENGINE_INPUT
+&CONTROL
+   prefix      = 'H2-diss.Al100-2x1-2L'
+   !outdir      = '/tmp/',
+   !pseudo_dir = 'directory where pp-files are kept',
+/
+&SYSTEM
+   ibrav     =  8,
+   celldm(1) =  10.7848,
+   celldm(2) =  0.5,
+   celldm(3) =  1.25,
+   nat       =  6,
+   ntyp      =  2,
+   
+   ecutwfc   =  25.0,
+   ecutrho   =  150.0,
+   
+   occupations =  'smearing',
+   smearing    =  'methfessel-paxton',
+   degauss     =  0.03,
+/
+&ELECTRONS
+   conv_thr = 1.e-8,
+   tqr      = .true.
+/
+
+ATOMIC_SPECIES
+   Al    1.0   Al.pbe-n-kjpaw_psl.1.0.0.UPF 
+   H     1.0   H.pbe-rrkjus.UPF
+   
+K_POINTS automatic
+   3  6  1    1   1   1 
+
+BEGIN_POSITIONS
+FIRST_IMAGE
+ATOMIC_POSITIONS alat
+   Al       0.000000000   0.000000000   0.000000000    0   0   0
+   Al       0.500000000   0.000000000   0.000000000    0   0   0
+   Al       0.250000000   0.250000000   0.402618624
+   Al       0.750000000   0.250000000   0.401917298
+   H        0.182942411   0.250000000   0.830042477
+   H        0.317057589   0.250000000   0.830042477
+INTERMEDIATE_IMAGE
+ATOMIC_POSITIONS alat
+   Al       0.000000000   0.000000000   0.000000000
+   Al       0.500000000   0.000000000   0.000000000
+   Al       0.250000000   0.250000000   0.402618624
+   Al       0.750000000   0.250000000   0.401917298
+   H        0.182942411   0.250000000   0.73
+   H        0.317057589   0.250000000   0.73
+LAST_IMAGE
+ATOMIC_POSITIONS alat
+   Al       0.000000000   0.000000000   0.000000000
+   Al       0.500000000   0.000000000   0.000000000
+   Al       0.250007316   0.250000000   0.383302159
+   Al       0.749992684   0.250000000   0.383302159
+   H        0.000000000   0.250000000   0.568880855
+   H        0.500000000   0.250000000   0.568898370
+END_POSITIONS
+   
+END_ENGINE_INPUT
+END

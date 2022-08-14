@@ -1,0 +1,437 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- *** FILE AUTOMATICALLY CREATED: DO NOT EDIT, CHANGES WILL BE LOST *** --><meta http-equiv="Content-Style-Type" CONTENT="text/css">
+</head>
+<body style="background-color: white; font-family: arial, helvetica, sans-serif; font-size: 14px; padding-left: 10; width: 700; ">
+<a name="__top__"></a><table style="border-width: 0 width: 100% text-align: left; vertical-align: top; background: #00395a;">
+<tr><th style="margin: 3 3 3 10; background: #00395a; color: #ffffee; ">
+<h1 style="margin: 5 10 10 15; text-align: left;"> Input File Description </h1>
+<h2 style="margin: 5 10 10 15; text-align: left;"> Program: projwfc.x / PWscf / Quantum Espresso</h2>
+</th></tr>
+<tr><td style="padding: 10 3 3 3; background: #ffffff; color: #222222; ">
+   <blockquote>
+<h3>TABLE OF CONTENTS</h3>
+<blockquote>
+<p><a href="#idm1680">INTRODUCTION</a></p>
+<p><a href="#idm560">&amp;PROJWFC</a><blockquote>
+<a href="#idp20400">prefix</a> | <a href="#idp22160">outdir</a> | <a href="#idp24128">ngauss</a> | <a href="#idp26144">degauss</a> | <a href="#idp28464">Emin</a> | <a href="#idp29120">Emax</a> | <a href="#idp30848">DeltaE</a> | <a href="#idp32208">lsym</a> | <a href="#idp34000">filpdos</a> | <a href="#idp35808">filproj</a> | <a href="#idp37616">lwrite_overlaps</a> | <a href="#idp39488">lbinary_data</a> | <a href="#idp41312">kresolveddos</a> | <a href="#idp43232">tdosinboxes</a> | <a href="#idp45280">n_proj_boxes</a> | <a href="#idp47008">irmin</a> | <a href="#idp48800">irmax</a> | <a href="#idp50592">plotboxes</a>
+</blockquote></p>
+<p><a href="#idp52656">Notes</a><blockquote><a href="#idp53184">Format of output files</a></blockquote><blockquote><a href="#idp58176">Orbital Order</a></blockquote><blockquote><a href="#idp59888">Defining boxes for the Local DOS(E)</a></blockquote><blockquote><a href="#idp61536">Important notices</a></blockquote></p>
+</blockquote>
+</blockquote>
+   <blockquote>
+<a name="idm1680"><h3>INTRODUCTION</h3></a><blockquote><pre>
+Purpose of projwfc.x:
+    projects wavefunctions onto orthogonalized atomic wavefunctions,
+    calculates Lowdin charges, spilling parameter, projected DOS
+    (separated into up and down components for lSDA)
+    alternatively, computes the local DOS(E), integrated in volumes
+    given in input
+
+Structure of the input data:
+============================
+
+   &amp;PROJWFC
+     ...
+   /
+   </pre></blockquote>
+</blockquote>
+   <a name="idm560"><table border="0" width="100%" style="margin-bottom: 20; ">
+<tr><th bgcolor="#ddcba6"><h2 style="margin: 10 10 10 15; text-align: left;"> Namelist: PROJWFC</h2></th></tr>
+<tr><td style="text-align: left; background: #ffebc6; padding: 5 5 5 30; "><table style="border-color: #505087; border-style: solid; border-width: 0; margin-bottom: 10; table-layout: auto; width: 700; "><tbody><tr><td>
+      <a name="idp20400"><a name="prefix"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">prefix</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">CHARACTER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> 'pwscf'
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+Prefix of input file produced by pw.x
+(wavefunctions are needed).
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp22160"><a name="outdir"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">outdir</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">CHARACTER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; ">
+value of the ESPRESSO_TMPDIR environment variable if set;
+current directory ('./') otherwise
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+directory containing the input data,
+i.e. the same as in pw.x
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp24128"><a name="ngauss"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">ngauss</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">INTEGER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> 0
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+Type of gaussian broadening:
+    0 ... Simple Gaussian (default)
+    1 ... Methfessel-Paxton of order 1
+   -1 ... Marzari-Vanderbilt "cold smearing"
+  -99 ... Fermi-Dirac function
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp26144"><a name="degauss"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">degauss</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">REAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> 0.0
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre> gaussian broadening, Ry (not eV!)
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="white-space: nowrap; background: #ffff99; padding: 2 2 2 10; ">
+<a name="idp28464"><a name="Emin">Emin, </a></a><a name="idp29120"><a name="Emax">Emax</a></a>
+</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">REAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> (band extrema)
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre> min &amp; max energy (eV) for DOS plot
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div>
+      <a name="idp30848"><a name="DeltaE"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">DeltaE</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">REAL</td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre> energy grid step (eV)
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp32208"><a name="lsym"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">lsym</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">LOGICAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> .true.
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+if true the projections are symmetrized
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp34000"><a name="filpdos"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">filpdos</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">CHARACTER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> (value of prefix variable)
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre> prefix for output files containing PDOS(E)
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp35808"><a name="filproj"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">filproj</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">CHARACTER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> (standard output)
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+file containing the projections
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp37616"><a name="lwrite_overlaps"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">lwrite_overlaps</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">LOGICAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> .false.
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+if .true., the overlap matrix of the atomic orbitals
+prior to orthogonalization is written to the atomic_proj datafile.
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp39488"><a name="lbinary_data"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">lbinary_data</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">LOGICAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> .false.
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+if .true., the atomic_proj datafile is written in binary fmt.
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp41312"><a name="kresolveddos"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">kresolveddos</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">LOGICAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> .false.
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+if .true. the k-resolved DOS is computed: not summed over
+all k-points but written as a function of the k-point index.
+In this case all k-point weights are set to unity
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp43232"><a name="tdosinboxes"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">tdosinboxes</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">LOGICAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> .false.
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+if .true. compute the local DOS integrated in volumes
+volumes are defined as boxes with edges parallel
+to the unit cell, containing the points of the
+(charge density) FFT grid included within
+irmin and irmax, in the three dimensions:
+from irmin(j,n) to irmax(j,n) for j=1,2,3
+(n=1,n_proj_boxes)
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp45280"><a name="n_proj_boxes"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">n_proj_boxes</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">INTEGER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> 1
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+number of boxes where the local DOS is computed
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp47008"><a name="irmin"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">irmin</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">INTEGER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> 1
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+first point to be included in the box
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp48800"><a name="irmax"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">irmax</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">INTEGER</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> 0
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+last point to be included in the box
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+      <a name="idp50592"><a name="plotboxes"><table width="100%" style="border-color:   #b5b500; border-style: solid; border-width: 2; margin-bottom: 10; table-layout: auto; background-color: #FFFFFF;">
+<tr>
+<th align="left" valign="top" width="20%" style="background: #ffff99; padding: 2 2 2 10; ">plotboxes</th>
+<td style="text-align: left; vertical-align: top; background: #ffffc3; padding: 2 2 2 5; ">LOGICAL</td>
+</tr>
+<tr>
+<td style="text-align: right; vertical-align: top; background: #ffffc3; padding: 2 10 2 10; "><i>Default:</i></td>
+<td style="text-align: left;  vertical-align: top; background: #fff3d9; padding: 2 2 2 5; "> .false.
+         </td>
+</tr>
+<tr><td align="left" valign="top" colspan="2"><blockquote><pre>
+if .true., the boxes are written in output as
+as xsf files with 3D datagrids, valued 1.0
+inside the box volume and 0 outside
+(visualize them as isosurfaces with isovalue 0.5)
+         </pre></blockquote></td></tr>
+</table>
+<div align="right">[<a href="#__top__">Back to Top</a>]</div></a></a>
+   </td></tr></tbody></table></td></tr>
+</table></a>
+   <blockquote>
+<a name="idp52656"><h3>Notes</h3></a>
+      <blockquote>
+<a name="idp53184"><h4>Format of output files</h4></a>
+         <blockquote><pre>
+Projections are written to standard output,
+and also to file filproj if given as input.
+
+The total DOS and the sum of projected DOS are written to file
+"filpdos".pdos_tot.
+
+* The format for the collinear, spin-unpolarized case and the
+  non-collinear, spin-orbit case is:
+      E DOS(E) PDOS(E)
+      ...
+
+* The format for the collinear, spin-polarized case is:
+      E DOSup(E) DOSdw(E)  PDOSup(E) PDOSdw(E)
+      ...
+
+* The format for the non-collinear, non spin-orbit case is:
+      E DOS(E) PDOSup(E) PDOSdw(E)
+      ...
+
+In the collinear case and the non-collinear, non spin-orbit case
+projected DOS are written to file "filpdos".pdos_atm#N(X)_wfc#M(l),
+where N = atom number , X = atom symbol, M = wfc number, l=s,p,d,f
+(one file per atomic wavefunction found in the pseudopotential file)
+
+* The format for the collinear, spin-unpolarized case is:
+      E LDOS(E) PDOS_1(E) ... PDOS_2l+1(E)
+      ...
+
+where LDOS = \sum m=1,2l+1 PDOS_m(E)
+and PDOS_m(E) = projected DOS on atomic wfc with component m
+
+* The format for the collinear, spin-polarized case and the
+  non-collinear, non spin-orbit case is as above with
+  two components for both  LDOS(E) and PDOS_m(E)
+
+In the non-collinear, spin-orbit case (i.e. if there is at least one
+fully relativistic pseudopotential) wavefunctions are projected
+onto eigenstates of the total angular-momentum.
+Projected DOS are written to file "filpdos".pdos_atm#N(X)_wfc#M(l_j),
+where N = atom number , X = atom symbol, M = wfc number, l=s,p,d,f
+and j is the value of the total angular momentum.
+In this case the format is:
+    E LDOS(E) PDOS_1(E) ... PDOS_2j+1(E)
+    ...
+
+If kresolveddos=.true., the k-point index is prepended
+to the formats above, e.g. (collinear, spin-unpolarized case)
+    ik E DOS(E) PDOS(E)
+
+All DOS(E) are in states/eV plotted vs E in eV
+         </pre></blockquote>
+      </blockquote>
+      <blockquote>
+<a name="idp58176"><h4>Orbital Order</h4></a>
+         <blockquote><pre>
+Order of m-components for each l in the output:
+
+    1, cos(phi), sin(phi), cos(2*phi), sin(2*phi), .., cos(l*phi), sin(l*phi)
+
+where phi is the polar angle:x=r cos(theta)cos(phi), y=r cos(theta)sin(phi)
+This is determined in file flib/ylmr2.f90 that calculates spherical harmonics.
+
+for l=1:
+  1 pz     (m=0)
+  2 px     (real combination of m=+/-1 with cosine)
+  3 py     (real combination of m=+/-1 with sine)
+
+for l=2:
+  1 dz2    (m=0)
+  2 dzx    (real combination of m=+/-1 with cosine)
+  3 dzy    (real combination of m=+/-1 with sine)
+  4 dx2-y2 (real combination of m=+/-2 with cosine)
+  5 dxy    (real combination of m=+/-2 with sine)
+         </pre></blockquote>
+      </blockquote>
+      <blockquote>
+<a name="idp59888"><h4>Defining boxes for the Local DOS(E)</h4></a>
+         <blockquote><pre>
+Boxes are specified using the variables irmin and irmax:
+FFT grid points are included from irmin(j,n) to irmax(j,n)
+for j=1,2,3 and n=1,...,n_proj_boxes
+irmin and irmax range from 1 to nr1 or nr2 or nr3
+Values larger than nr1/2/3 or smaller than 1 are folded
+to the unit cell.
+If irmax&lt;irmin FFT grid points are included from 1 to irmax
+and from irmin to nr1/2/3
+         </pre></blockquote>
+      </blockquote>
+      <blockquote>
+<a name="idp61536"><h4>Important notices</h4></a>
+         <blockquote><pre>
+* The tetrahedron method is presently not implemented.
+
+* Gaussian broadening is used in all cases:
+
+    - if degauss is set to some value in namelist &amp;projwfc, that value
+      (and the optional value for ngauss) is used
+
+    - if degauss is NOT set to any value in namelist &amp;projwfc, the
+      value of degauss and of ngauss are read from the input data
+      file (they will be the same used in the pw.x calculations)
+
+    - if degauss is NOT set to any value in namelist &amp;projwfc, AND
+      there is no value of degauss and of ngauss in the input data
+      file, degauss=DeltaE (in Ry) and ngauss=0 will be used
+
+
+Obsolete variables, ignored:
+    io_choice
+    smoothing
+         </pre></blockquote>
+      </blockquote>
+   </blockquote>
+</td></tr>
+</table>
+<blockquote><small>
+	    This file has been created by helpdoc utility.
+	  </small></blockquote>
+</body>
+</html>

@@ -1,0 +1,2 @@
+&input  fildyn='alas.dynG', asr='simple',
+        q(1)=1.0, q(2)=0.0, q(3)=0.0 /

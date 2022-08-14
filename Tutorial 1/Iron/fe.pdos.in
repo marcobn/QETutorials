@@ -1,0 +1,7 @@
+ &projwfc
+    prefix='fe',
+    !outdir='temporary directory for large files'
+    filpdos='fe.pdos'
+    Emin=5.0, Emax=20.0, DeltaE=0.1
+    degauss=0.01
+ /

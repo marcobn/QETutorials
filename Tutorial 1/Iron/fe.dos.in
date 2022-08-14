@@ -1,0 +1,6 @@
+ &dos
+    prefix='fe',
+    outdir='temporary directory for large files'
+    fildos='fe.dos'
+    Emin=5.0, Emax=20.0, DeltaE=0.1
+ /

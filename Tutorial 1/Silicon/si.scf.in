@@ -1,0 +1,22 @@
+ &control
+    prefix='silicon',
+    ! this is a comment: you can comment out variables
+    ! set pseudo_dir and outdir to suitable directories
+    pseudo_dir = 'directory where pp-files are kept/',
+    outdir='directory where scratch and data files are written/'
+ /
+ &system    
+    ibrav=  2, celldm(1) =10.7, nat=  2, ntyp= 1,
+    ecutwfc = 20.0, 
+ /
+ &electrons
+ /
+ATOMIC_SPECIES
+ Si  28.086  Si.pz-vbc.UPF
+ATOMIC_POSITIONS alat
+ Si 0.00 0.00 0.00 
+ Si 0.25 0.25 0.25 
+! this is a comment 
+K_POINTS automatic
+# this is also a comment 
+   4 4 4 1 1 1

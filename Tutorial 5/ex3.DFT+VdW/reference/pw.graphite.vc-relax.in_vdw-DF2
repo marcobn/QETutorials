@@ -1,0 +1,40 @@
+&control
+    calculation='vc-relax'
+    restart_mode='from_scratch',
+    prefix='graphite'
+    pseudo_dir = '../../../pseudo'
+    outdir='./tmp/'
+    verbosity='high'
+    etot_conv_thr = 1.0D-5
+    forc_conv_thr = 1.0D-4
+/
+&system
+   ibrav = 4, 
+   a = 2.466, 
+   c = 6.411,
+   nat = 4,
+   ntyp = 1,
+   ecutwfc = 30.0,
+   ecutrho = 240.0,
+   occupations = 'smearing',
+   smearing = 'mv',
+   degauss = 0.02,
+   input_dft = 'vdw-DF2'
+/
+&electrons
+   conv_thr =  1.d-9
+   mixing_beta = 0.3
+/
+&ions
+/
+&cell
+/
+ATOMIC_SPECIES
+ C   12.011   C.pbe-rrkjus.UPF
+ATOMIC_POSITIONS {crystal}
+ C      0.000000    1.000000    0.75000
+ C      0.666667    0.333333    0.75000
+ C      0.000000    1.000000    0.25000
+ C      0.333333    0.666667    0.25000
+K_POINTS {automatic}
+ 4 4 2 1 1 1

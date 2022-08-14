@@ -1,0 +1,11 @@
+Phonons of Si at Gamma
+ &inputph
+  tr2_ph=1.0d-14,
+  amass(1)=28.0855,
+  prefix='SIPH',
+  !outdir='directory where large files are written/'
+  outdir='./tmp'
+  fildyn='si.dynG',
+  ! epsil=.true.
+ /
+ 0.0 0.0 0.0

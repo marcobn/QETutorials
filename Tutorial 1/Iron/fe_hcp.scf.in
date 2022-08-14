@@ -1,0 +1,23 @@
+ &control
+    prefix='fe'
+    !outdir='temporary directory for large files'
+    !pseudo_dir = 'directory where pp-files are kept',
+ /
+ &system
+    ibrav= 4, celldm(1)=5.0, celldm(3)=1.633, nat=2, ntyp= 1,
+    ecutwfc = 30.0, ecutrho = 360.0,
+    occupations='smearing', smearing='mv', degauss=0.02,
+    nbnd=12,
+    nspin=2, 
+    starting_magnetization(1)=0.4
+ /
+ &electrons
+    mixing_beta = 0.5 
+ /
+ATOMIC_SPECIES
+ Fe  1.  Fe.pbe-nd-rrkjus.UPF
+ATOMIC_POSITIONS alat
+ Fe 0.0 0.00       0.0 
+ Fe 0.0 0.5773503  0.8165
+K_POINTS automatic
+8 8 6 0 0 0

@@ -1,0 +1,28 @@
+ &control
+    calculation='vc-relax'
+    prefix='fe',
+    outdir='temporary directory for large files'
+    pseudo_dir = 'directory with pseudopotential files',
+    !verbosity = 'high'
+ /
+ &system
+    ibrav= 4, celldm(1)=4.9, celldm(3)=1.633, nat=2, ntyp= 1,
+    ecutwfc = 30, ecutrho = 200,
+    occupations='smearing', smearing='mv', degauss=0.01,
+    nbnd = 8,
+    nspin=2, starting_magnetization(1)= 0.4
+ /
+ &electrons
+ /
+ &ions
+ /
+ &cell
+    cell_dofree='shape'
+ /
+ATOMIC_SPECIES
+ Fe  1.  Fe.pbe-nd-rrkjus.UPF
+ATOMIC_POSITIONS alat
+ Fe 0.0 0.00       0.0 
+ Fe 0.0 0.5773503  0.8165
+K_POINTS automatic
+8 8 6 0 0 0

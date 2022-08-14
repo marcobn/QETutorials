@@ -1,0 +1,33 @@
+ &control
+    calculation='scf'
+    restart_mode='from_scratch',
+    tprnfor = .true.
+    prefix='ni',
+    !pseudo_dir='directory where pseudopotentials are stored/',
+    !outdir='directory where large files are written/'
+    pseudo_dir = './',
+    outdir='./tmp'
+ /
+ &system    
+    ibrav=2, 
+    celldm(1) =6.65, 
+    nat=  1, 
+    ntyp= 1,
+    nspin=2,
+    starting_magnetization(1)=0.5,
+    degauss=0.02,
+    smearing='mp',
+    occupations='smearing',
+    ecutwfc =27.0
+    ecutrho =300.0
+ /
+ &electrons
+    conv_thr =  1.0d-8
+    mixing_beta = 0.7
+ /
+ATOMIC_SPECIES
+ Ni  26.98  Ni.pbe-nd-rrkjus.UPF
+ATOMIC_POSITIONS
+ Ni 0.00 0.00 0.00 
+K_POINTS AUTOMATIC
+4 4 4 1 1 1

@@ -1,0 +1,58 @@
+ &CONTROL
+    calculation = 'vc-relax',
+    prefix      = 'urea',
+    !outdir      = '/tmp/',
+    !pseudo_dir  = 'directory with pseudopotentials',
+ /
+
+ &SYSTEM
+    ibrav     =  6,
+    celldm(1) =  9.248,
+    celldm(3) =  0.970,
+    nat  =  16,
+    ntyp =  4,
+
+    ! beware that these cutoffs are very low for the sake of speed-up
+    ! of the exercise
+    ecutwfc  =  30.0,
+    ecutrho  =  240.0,
+
+    vdw_corr = 'dft-d3'
+ /
+
+ &ELECTRONS
+    conv_thr = 1d-7,
+ /
+ 
+ &IONS
+    upscale = 100.0
+ /
+ &CELL
+ /
+
+ATOMIC_SPECIES
+   H  1.0  H.pbe-rrkjus.UPF
+   C  1.0  C.pbe-rrkjus.UPF
+   N  1.0  N.pbe-rrkjus.UPF
+   O  1.0  O.pbe-rrkjus.UPF
+   
+ATOMIC_POSITIONS angstrom
+   C      -0.001438418     2.446048352     1.438380184
+   O      -0.003496941     2.447639523     2.707714496
+   N       0.826782509     3.269423236     0.782782777
+   H       1.436085115     3.881155773     1.356088663
+   H       0.873721955     3.315859712    -0.232957296
+   N      -0.827792682     1.620903894     0.782509530
+   H      -1.438469093     1.010745725     1.356064544
+   H      -0.872889165     1.572573637    -0.233191205
+   C       2.444397555     0.000489761     3.392337130
+   O       2.445429583    -0.000066478     2.121657477
+   N       3.269204282    -0.828186046     4.046917720
+   N       1.621650633     0.826692325     4.046077192
+   H       3.880340728    -1.437583834     3.473719379
+   H       1.009428743     1.437352548     3.474022354
+   H       3.316459903    -0.873595030     5.062625247
+   H       1.573567906     0.872408905     5.062992669
+
+
+K_POINTS gamma

@@ -1,0 +1,23 @@
+ &control
+   calculation='nscf'
+    !outdir='temporary directory for large files'
+    !pseudo_dir = 'directory where pp-files are kept',
+    !verbosity = 'high',
+    prefix='fe',
+ /
+ &system
+    ibrav=  3, celldm(1)=5.42, nat=  1, ntyp= 1,
+    ecutwfc = 25.0, ecutrho = 200.0,
+    occupations='tetrahedra'
+    nbnd = 8,
+    nspin=2, 
+    starting_magnetization(1)= 0.6
+ /
+ &electrons
+ /
+ATOMIC_SPECIES
+ Fe  1.  Fe.pbe-nd-rrkjus.UPF
+ATOMIC_POSITIONS crystal
+ Fe 0.0  0.0  0.0 
+K_POINTS automatic
+ 12 12 12 1 1 1

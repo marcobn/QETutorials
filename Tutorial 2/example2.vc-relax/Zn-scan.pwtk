@@ -1,0 +1,20 @@
+load_fromPWI pw.Zn.scf.in
+
+# open a file for writing resulting total energies
+set fid [open Zn-energies.dat w]
+
+# a double-loop over A and C
+
+foreach A [seq 2.4 0.1 2.8] {
+    foreach C [seq 4.8 0.2 5.6] {
+        set name pw.Zn.scf.a$A.c$C
+
+        SYSTEM " A = $A , C = $C"        
+        runPW $name.in
+        
+        # write the result
+        set Etot [::pwtk::pwo::totene $name.out]
+        puts $fid "$A $C $Etot"
+    }
+    puts $fid ""
+}

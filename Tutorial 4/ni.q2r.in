@@ -1,0 +1,5 @@
+ &input
+   fildyn='ni.dyn',
+   zasr='simple',
+   flfrc='ni444.fc'
+ /
