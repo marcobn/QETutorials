@@ -1,11 +1,11 @@
- &CONTROL
+&CONTROL
     calculation = 'relax',
     prefix      = 'Graphane',
-    !outdir      = '/tmp',
-    !pseudo_dir  = 'directory with pseudopotentials',        
- /
+    outdir      = './',
+    pseudo_dir  = '../pseudo',        
+/
 
- &SYSTEM
+&SYSTEM
     ibrav     = 4,
     celldm(1) = 4.654,
     celldm(3) = 3.0,
@@ -14,18 +14,18 @@
     ecutwfc = 20.0,
     ecutrho = 200.0, 
 
-!    occupations = 'smearing',
-!    smearing = 'm-v',
-!    degauss = 0.01,
+!   occupations = 'smearing',
+!   smearing = 'm-v',
+!   degauss = 0.01,
  /
  
- &ELECTRONS
+&ELECTRONS
     conv_thr = 1.0d-8
- /
+/
 
- &IONS
+&IONS
     upscale = 100.0
- /
+/
  
 ATOMIC_SPECIES
    C  12.0107 C.pbe-rrkjus.UPF
