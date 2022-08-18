@@ -1,8 +1,8 @@
  &CONTROL
     calculation = 'vc-relax',
     prefix      = 'Zn',
-    !outdir      = '/tmp/',
-    !pseudo_dir  = 'directory with pseudopotentials',
+    outdir      = './',
+    pseudo_dir  = '../pseudo/'
  /
 
  &SYSTEM
@@ -11,10 +11,8 @@
     celldm(3) =  1.8,
     nat       =  2,
     ntyp      =  1,
-
     ecutwfc =  30.0,
     ecutrho =  240.0,
-    
     occupations =  'smearing',
     smearing    =  'methfessel-paxton',
     degauss     =  0.03,
